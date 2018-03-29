@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-    ifstream handle;
-    handle.open("src/data.txt");
+    ifstream fd;
+    fd.open("src/data.txt");
 
     string line;
 
-    while(getline(handle,line))
+    while(getline(fd,line))
     {
         cout << line << endl;
     }
