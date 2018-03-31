@@ -42,29 +42,28 @@ void checkAssignment(const string& t)
         last  = str.substr(index + 1);
         spec = str.back();
 
-        first = first.substr(0, last.length()-1);
-        last = last.substr(0, last.length()-1);
-        
-        /*
-        if(isValid(first))
-            cout << first << "\t\t\tIDENTIFIER" << endl;
-        else
-            cout << first << "\t\t\tINVALID TOKEN" << endl;
-        */
-        cout << first << "\t\t\tTOKEN" << endl;
-        cout << last << "\t\t\tNUMBER" << endl;
+        cout << first << "\t\t\tIDENTIFIER" << endl;
+        cout << last.substr(0, last.length()-1) << "\t\t\tNUMBER" << endl;
         cout << spec << "\t\t\tSPECIAL CHARACTER" << endl;
     }
     else
     {
         cout << trim(str.substr(0, str.length()-1));
-        str = str.substr(0, last.length()-1);
-        if(isValid(str))
+        string check = str.substr(0, str.length()-1);
+        if(isValid(check))
         {
-            if(str.length() < 9)
+            //cout << isValid(str) << endl;
+            if(check.length() < 9)
                 cout << "\t\t\tIDENTIFIER" << endl;
             else
                 cout << "\t\tIDENTIFIER" << endl;
+        }
+        else
+        {
+            if(check.length() < 9)
+                cout << "\t\t\tINVALID TOKEN" << endl;
+            else
+                cout << "\t\tINVALID TOKEN" << endl;
         }
         if(str.back() == ';' || str.back() == ',')
         {
