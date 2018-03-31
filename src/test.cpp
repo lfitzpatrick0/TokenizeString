@@ -27,15 +27,48 @@ string trim(const string& str)
     return str.substr(first, (last - first + 1));
 }
 
+void checkAssignment(const string& t)
+{
+    string str = t;
+    string first, last, spec;
+    size_t index;
+
+    index = str.find("=");
+
+    if(index != string::npos)
+    {
+        first = str.substr(0, index);
+        last  = str.substr(index + 1);
+        spec = str.back();
+
+        cout << first << "\t\t\tIDENTIFIER" << endl;
+        cout << last.substr(0, last.length()-1) << "\t\t\tNUMBER" << endl;
+        cout << spec << "\t\t\tSPECIAL CHARACTER" << endl;
+    }
+    else
+    {
+        cout << trim(str.substr(0, str.length()-1));
+        if(str.length() < 9)
+            cout << "\t\t\tIDENTIFIER" << endl;
+        else
+            cout << "\t\tIDENTIFIER" << endl;
+        if(str.back() == ';' || str.back() == ',')
+        {
+            cout << str.back() << "\t\t\tSPECIAL CHARACTER" << endl;
+        }
+    }
+}
+
 void checkToken(const string& t)
 {
     if(t == "int" || t == "float")
-        cout << t << "\t\t\t\t\tRESERVED WORD" << endl;
-    else if(t.back() == ',')
-        cout << t.substr(0,t.length()-1) << "\t\t\t\tIDENTIFIER" << endl << t.back() << "\t\t\t\tSPECIAL CHARACTER" << endl;
-    else if(t.back() == ';')
-        cout << t.substr(0,t.length()-1) << "\t\t\t\tIDENTIFIER" << endl << t.back() << "\t\t\t\tSPECIAL CHARACTER" << endl;
+        cout << t << "\t\t\tRESERVED WORD" << endl;
+    else if(t.back() == ',' || t.back() == ';')
+    {
+        checkAssignment(t);
+    }
 }
+
 
 int main()
 {
@@ -53,7 +86,6 @@ int main()
         while ((index = s.find(delimiter)) != string::npos) {
             token = s.substr(0, index + 1);
             token = trim(token);
-            //cout << token << endl;
             checkToken(token);
             s.erase(0, index + delimiter.length());
         }
