@@ -3,8 +3,9 @@
 #include <fstream>
 using namespace std;
 
-string getLast(string a)
+string getLast(const string& b)
 {
+    string a = b;
     size_t i = 0;
     string token;
     while((i = a.rfind(" ")) != string::npos)
@@ -26,6 +27,16 @@ string trim(const string& str)
     return str.substr(first, (last - first + 1));
 }
 
+void checkToken(const string& t)
+{
+    if(t == "int" || t == "float")
+        cout << t << "\t\t\t\t\tRESERVED WORD" << endl;
+    else if(t.back() == ',')
+        cout << t.substr(0,t.length()-1) << "\t\t\t\tIDENTIFIER" << endl << t.back() << "\t\t\t\tSPECIAL CHARACTER" << endl;
+    else if(t.back() == ';')
+        cout << t.substr(0,t.length()-1) << "\t\t\t\tIDENTIFIER" << endl << t.back() << "\t\t\t\tSPECIAL CHARACTER" << endl;
+}
+
 int main()
 {
     ifstream fd;
@@ -42,10 +53,11 @@ int main()
         while ((index = s.find(delimiter)) != string::npos) {
             token = s.substr(0, index + 1);
             token = trim(token);
-            cout << token << endl;
+            //cout << token << endl;
+            checkToken(token);
             s.erase(0, index + delimiter.length());
         }
-        cout << last << endl;
+        checkToken(last);
     }
 
     return 0;
