@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "header.h"
 using namespace std;
 
 string getLast(const string& b)
@@ -41,17 +42,30 @@ void checkAssignment(const string& t)
         last  = str.substr(index + 1);
         spec = str.back();
 
-        cout << first << "\t\t\tIDENTIFIER" << endl;
-        cout << last.substr(0, last.length()-1) << "\t\t\tNUMBER" << endl;
+        first = first.substr(0, last.length()-1);
+        last = last.substr(0, last.length()-1);
+        
+        /*
+        if(isValid(first))
+            cout << first << "\t\t\tIDENTIFIER" << endl;
+        else
+            cout << first << "\t\t\tINVALID TOKEN" << endl;
+        */
+        cout << first << "\t\t\tTOKEN" << endl;
+        cout << last << "\t\t\tNUMBER" << endl;
         cout << spec << "\t\t\tSPECIAL CHARACTER" << endl;
     }
     else
     {
         cout << trim(str.substr(0, str.length()-1));
-        if(str.length() < 9)
-            cout << "\t\t\tIDENTIFIER" << endl;
-        else
-            cout << "\t\tIDENTIFIER" << endl;
+        str = str.substr(0, last.length()-1);
+        if(isValid(str))
+        {
+            if(str.length() < 9)
+                cout << "\t\t\tIDENTIFIER" << endl;
+            else
+                cout << "\t\tIDENTIFIER" << endl;
+        }
         if(str.back() == ';' || str.back() == ',')
         {
             cout << str.back() << "\t\t\tSPECIAL CHARACTER" << endl;

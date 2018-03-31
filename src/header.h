@@ -22,8 +22,6 @@ bool isValid(string &str)
                 valid = false;
             else if(str[i] == '_')
                 i++;
-            else
-                valid = false;
         }
     }
     return valid;
