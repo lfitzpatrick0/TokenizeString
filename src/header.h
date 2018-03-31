@@ -26,3 +26,23 @@ bool isValid(string &str)
     }
     return valid;
 }
+
+bool isValidNum(string &str)
+{
+    bool valid = true;
+    int i = 0;
+    int j = 0;
+    while(str[i])
+    {
+        if(isdigit(str[i]))
+            i++;
+        if(ispunct(str[i]))
+        {
+            j++; 
+            i++; 
+        }
+        if(j > 1)
+            valid = false;
+    }
+    return valid;
+}

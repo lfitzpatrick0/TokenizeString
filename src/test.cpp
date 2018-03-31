@@ -43,7 +43,14 @@ void checkAssignment(const string& t)
         spec = str.back();
 
         cout << first << "\t\t\tIDENTIFIER" << endl;
-        cout << last.substr(0, last.length()-1) << "\t\t\tNUMBER" << endl;
+        string check = last.substr(0,last.length()-1);
+        //cout << last.substr(0, last.length()-1) << "\t\t\tNUMBER" << endl;
+        if(isValidNum(check))
+        {
+            cout << check << "\t\t\tINTEGER" << endl;
+        }
+        else
+            cout << check << "\t\t\tNOT REAL NUMBER" << endl;
         cout << spec << "\t\t\tSPECIAL CHARACTER" << endl;
     }
     else
